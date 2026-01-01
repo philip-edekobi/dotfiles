@@ -1,0 +1,11 @@
+/*
+
+!.gitignore
+
+!foot/
+!fuzzel/
+!nvim/
+!sway/
+!waybar/
+!wezterm/
+
