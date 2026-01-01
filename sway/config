@@ -24,7 +24,8 @@ set $menu fuzzel
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # output * bg #00204f solid_color
-output * bg /home/luxury/Pictures/Wallpapers/minimal-28.png fill
+# output * bg /home/luxury/Pictures/Wallpapers/minimal-28.png fill
+output * bg /home/luxury/Pictures/Wallpapers/Arch.png fill
 
 #
 # Example configuration:
@@ -205,8 +206,10 @@ bindsym $mod+r mode "resize"
     # Special keys to adjust brightness via brightnessctl
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+
     # Special key to take a screenshot with grim
-    bindsym Print exec ksnip -t
+    bindsym Print exec grim ~/Pictures/Screenshots/$(date +'%Y-%m-%d-%H%M%S_screenshot.png')
+    bindsym XF86SelectiveScreenshot exec grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +'%Y-%m-%d-%H%M%S_screenshot.png')
 
 input "type:touchpad" {
   natural_scroll enabled
@@ -227,13 +230,15 @@ bar {
   swaybar_command waybar
 }
 
-font pango:'Roboto' Medium 13
+font pango:'AdwaitaSans' Medium 12
 
 exec wl-paste -t text --watch clipman store --no-persist
 
-exec swayidle -w \
-  timeout 240 'swaymsg "output * dpms off"' \
-  resume 'swaymsg "output * dpms on"' \
-  timeout 300 'systemctl suspend' \
-	before-sleep 'swaylock --image ~/Pictures/Wallpapers/Arch.png -eu --grace 30'
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
+exec swayidle -w \
+timeout 480 'swaylock -f --image ~/Pictures/Wallpapers/Arch.png -eu --grace 110' \
+  timeout 590 'swaymsg "output * dpms off"' \
+  resume 'swaymsg "output * dpms on"' \
+  timeout 600 'systemctl suspend' \
+	before-sleep ''
