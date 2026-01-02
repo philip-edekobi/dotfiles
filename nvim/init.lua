@@ -10,9 +10,15 @@ end
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+-- Some basic keymaps
+vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true }) -- leader key
+-- commenting
 vim.keymap.set("n", "<leader>/", "gcc", { remap = true, desc = "Toggle comment" })
 vim.keymap.set("v", "<leader>/", "gc", { remap = true, desc = "Toggle comment" })
+-- clear hl
+vim.keymap.set("n", "<Esc>", "<cmd> noh <CR>", { desc = "Clear highlights" })
+--show errors
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Show diagnostics popup" })
 
 -- number settings
 vim.opt.number = true
@@ -38,6 +44,14 @@ vim.opt.cursorline = true
 
 -- allow cusor to wraparound
 vim.opt.whichwrap:append("<,>,h,l,[,]")
+
+-- hack to explicitly start treesitter when i'm working with gleam files
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "gleam",
+	callback = function()
+		vim.treesitter.start()
+	end,
+})
 
 -- install lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

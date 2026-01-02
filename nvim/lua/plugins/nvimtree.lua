@@ -37,6 +37,7 @@ return {
 					adaptive_size = true,
 					side = "right",
 					relativenumber = true,
+					number = true,
 				},
 				renderer = {
 					group_empty = true,
