@@ -10,16 +10,6 @@ end
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Some basic keymaps
-vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true }) -- leader key
--- commenting
-vim.keymap.set("n", "<leader>/", "gcc", { remap = true, desc = "Toggle comment" })
-vim.keymap.set("v", "<leader>/", "gc", { remap = true, desc = "Toggle comment" })
--- clear hl
-vim.keymap.set("n", "<Esc>", "<cmd> noh <CR>", { desc = "Clear highlights" })
---show errors
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Show diagnostics popup" })
-
 -- number settings
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -82,3 +72,5 @@ local groups = { "Normal", "NormalFloat", "Pmenu", "FloatBorder" }
 for _, group in ipairs(groups) do
 	vim.api.nvim_set_hl(0, group, { bg = "NONE", ctermbg = "NONE" })
 end
+
+require("keymaps")
