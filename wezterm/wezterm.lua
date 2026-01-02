@@ -6,12 +6,12 @@ local config = wezterm.config_builder()
 
 config.font_size = 14
 -- config.line_height = 0.9;
-config.font = wezterm.font 'CommitMono'
+config.font = wezterm.font 'CommitMonoLuxury-500-Regular'
 
 config.background = {
   {
     source = {
-      File = './dn.jpg'
+      File = 'dn.jpg'
     },
 
     repeat_x = "Mirror",

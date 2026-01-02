@@ -72,26 +72,9 @@ local plugins = {
   },
   {
     "andweeb/presence.nvim",
-    event = "VeryLazy",
+    event = 'VeryLazy',
     config = function()
-      require("presence").setup({
-          -- General options
-        auto_update         = true,
-        neovim_image_text   = "Editing in Neovim", -- hover text
-        main_image          = "neovim",            -- "neovim" or "file"
-        -- client_id           = "1179337397914304512", -- Discord's Neovim RP client ID
-        -- log_level = "debug",
-        debounce_timeout    = 10,
-        enable_line_number  = false,
-
-        -- Rich Presence text
-        editing_text        = "Editing %s",
-        file_explorer_text  = "Browsing %s",
-        git_commit_text     = "Committing changes",
-        plugin_manager_text = "Managing plugins",
-        reading_text        = "Reading %s",
-        workspace_text      = "Working on %s",
-        line_number_text    = "Line %s out of %s",
+      require('presence').setup({
       })
     end,
   },

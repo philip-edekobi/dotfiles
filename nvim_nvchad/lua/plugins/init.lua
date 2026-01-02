@@ -77,14 +77,15 @@ local default_plugins = {
       require("core.utils").lazy_load "nvim-treesitter"
     end,
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    branch = "main",
     build = ":TSUpdate",
     opts = function()
       return require "plugins.configs.treesitter"
     end,
-    config = function(_, opts)
-      dofile(vim.g.base46_cache .. "syntax")
-      require("nvim-treesitter.configs").setup(opts)
-    end,
+    -- config = function(_, opts)
+    --   dofile(vim.g.base46_cache .. "syntax")
+    --   require("nvim-treesitter.configs").setup(opts)
+    -- end,
   },
 
   -- git stuff

@@ -237,8 +237,8 @@ exec wl-paste -t text --watch clipman store --no-persist
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 exec swayidle -w \
-timeout 480 'swaylock -f --image ~/Pictures/Wallpapers/Arch.png -eu --grace 110' \
-  timeout 590 'swaymsg "output * dpms off"' \
+timeout 270 'swaylock -f --image ~/Pictures/Wallpapers/Arch.png -eu --grace 15' \
+  timeout 285 'swaymsg "output * dpms off"' \
   resume 'swaymsg "output * dpms on"' \
-  timeout 600 'systemctl suspend' \
+  timeout 300 'systemctl suspend' \
 	before-sleep ''

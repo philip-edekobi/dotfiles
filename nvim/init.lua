@@ -1,26 +1,70 @@
-require "core"
+-- Hide splash screen for non-empty dirs
+local current_dir = vim.fn.getcwd()
+local dir_content = vim.fn.readdir(current_dir)
 
-local custom_init_path = vim.api.nvim_get_runtime_file("lua/custom/init.lua", false)[1]
-
-if custom_init_path then
-  dofile(custom_init_path)
+if #dir_content > 0 then
+	vim.opt.shortmess:append("I")
 end
 
-require("core.utils").load_mappings()
+-- Set leader
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+vim.keymap.set("n", "<leader>/", "gcc", { remap = true, desc = "Toggle comment" })
+vim.keymap.set("v", "<leader>/", "gc", { remap = true, desc = "Toggle comment" })
 
--- bootstrap lazy.nvim!
-if not vim.loop.fs_stat(lazypath) then
-  require("core.bootstrap").gen_chadrc_template()
-  require("core.bootstrap").lazy(lazypath)
+-- number settings
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.timeoutlen = 300
+
+-- syntax hl and file type detect
+vim.cmd("syntax on")
+vim.cmd("filetype plugin indent on")
+
+vim.opt.mouse = "a"
+
+-- use system clipboard
+vim.opt.clipboard = "unnamedplus"
+
+-- tab settings
+vim.opt.expandtab = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+
+-- highlight current line
+vim.opt.cursorline = true
+
+-- allow cusor to wraparound
+vim.opt.whichwrap:append("<,>,h,l,[,]")
+
+-- install lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.uv.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable",
+		lazypath,
+	})
 end
-
-dofile(vim.g.base46_cache .. "defaults")
 vim.opt.rtp:prepend(lazypath)
-require "plugins"
 
-vim.wo.number = true
-vim.wo.relativenumber = true
-vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE", })
-vim.api.nvim_set_hl(0, "Normal", { bg = "NONE", })
+require("lazy").setup({
+	-- means a plugin dir must exist for lazy to use
+	spec = {
+		{ import = "plugins" },
+	},
+})
+
+-- vim.cmd.colorscheme("decay")
+vim.cmd.colorscheme("nightfox")
+
+-- force bg transparency
+local groups = { "Normal", "NormalFloat", "Pmenu", "FloatBorder" }
+for _, group in ipairs(groups) do
+	vim.api.nvim_set_hl(0, group, { bg = "NONE", ctermbg = "NONE" })
+end
