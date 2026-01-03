@@ -1,6 +1,14 @@
 -- disable leader
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true }) -- leader key
 
+-- use display navigation instead of line by line
+vim.keymap.set({ "n", "v" }, "j", function()
+	return vim.v.count > 0 and "j" or "gj"
+end, { expr = true, silent = true })
+vim.keymap.set({ "n", "v" }, "k", function()
+	return vim.v.count > 0 and "k" or "gk"
+end, { expr = true, silent = true })
+
 -- commenting
 vim.keymap.set("n", "<leader>/", "gcc", { remap = true, desc = "Toggle comment" })
 vim.keymap.set("v", "<leader>/", "gc", { remap = true, desc = "Toggle comment" })

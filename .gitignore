@@ -2,6 +2,7 @@
 
 !.gitignore
 
+!fontconfig/
 !foot/
 !fuzzel/
 !nvim/
@@ -10,4 +11,3 @@
 !sway/
 !waybar/
 !wezterm/
-
