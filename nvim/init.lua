@@ -10,7 +10,7 @@ end
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- number settings
+-- line number settings
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.timeoutlen = 300
@@ -34,14 +34,6 @@ vim.opt.cursorline = true
 
 -- allow cusor to wraparound
 vim.opt.whichwrap:append("<,>,h,l,[,]")
-
--- hack to explicitly start treesitter when i'm working with gleam files
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "gleam",
-	callback = function()
-		vim.treesitter.start()
-	end,
-})
 
 -- install lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -74,3 +66,11 @@ for _, group in ipairs(groups) do
 end
 
 require("keymaps")
+
+-- gleam highlighting hack
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "gleam",
+	callback = function()
+		vim.treesitter.start()
+	end,
+})
