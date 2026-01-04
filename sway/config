@@ -233,13 +233,17 @@ bar {
 
 font pango:'AdwaitaSans' Medium 12
 
+# ensure sway can communicate with systemd
+exec systemctl --user import-environment swaysock
+
 exec wl-paste -t text --watch clipman store --no-persist
 
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 exec swayidle -w \
-timeout 270 'swaylock -f --image ~/Pictures/Wallpapers/Arch.png -eu --grace 15' \
+  timeout 270 'swaylock -f --image ~/Pictures/Wallpapers/Arch.png -eu --grace 15' \
   timeout 285 'swaymsg "output * dpms off"' \
   resume 'swaymsg "output * dpms on"' \
   timeout 300 'systemctl suspend' \
-	before-sleep ''
+	lock 'swaylock -f --image ~/Pictures/Wallpapers/Arch.png -eu' \
+	before-sleep 'swaylock -f --image ~/Pictures/Wallpapers/Arch.png -eu'
