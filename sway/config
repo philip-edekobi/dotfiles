@@ -247,3 +247,5 @@ exec swayidle -w \
   timeout 300 'systemctl suspend' \
 	lock 'swaylock -f --image ~/Pictures/Wallpapers/Arch.png -eu' \
 	before-sleep 'swaylock -f --image ~/Pictures/Wallpapers/Arch.png -eu'
+
+exec sway-audio-idle-inhibit
