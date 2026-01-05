@@ -59,4 +59,18 @@ return {
 			vim.lsp.enable({ "lua_ls", "ts_ls", "gopls", "zls", "asm_lsp", "gleam", "rust_analyzer", "jdtls", "clangd" })
 		end,
 	},
+	{
+		"ray-x/lsp_signature.nvim",
+		config = function()
+			local lsp_sig = require("lsp_signature")
+
+			lsp_sig.setup({
+				bind = true,
+				handler_opts = {
+					border = "rounded",
+				},
+				doc_lines = 10,
+			})
+		end,
+	},
 }
