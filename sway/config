@@ -231,7 +231,7 @@ bar {
   swaybar_command waybar
 }
 
-font pango:'AdwaitaSans' Medium 12
+font pango:AdwaitaSans, Noto Sans CJK SC Medium 12
 
 # ensure sway can communicate with systemd
 exec systemctl --user import-environment swaysock
