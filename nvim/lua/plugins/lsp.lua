@@ -110,6 +110,10 @@ return {
 					border = "rounded",
 				},
 				doc_lines = 10,
+				-- hi_parameter = "LspSignatureActiveParameter",
+
+				hint_enable = true,
+				hint_prefix = "Arg: ",
 			})
 		end,
 	},
