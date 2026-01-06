@@ -37,3 +37,6 @@ vim.keymap.set(navmodes, "<A-h>", [[<C-\><C-n><C-w>h]], navopts) -- Move Left
 vim.keymap.set(navmodes, "<A-j>", [[<C-\><C-n><C-w>j]], navopts) -- Move Down
 vim.keymap.set(navmodes, "<A-k>", [[<C-\><C-n><C-w>k]], navopts) -- Move Up
 vim.keymap.set(navmodes, "<A-l>", [[<C-\><C-n><C-w>l]], navopts) -- Move Right
+
+-- jump back after jumping to def or ref
+vim.keymap.set("n", "<leader>jb", "<C-t>", { desc = "Jump back" })

@@ -1,3 +1,7 @@
+local function extendTable(tab1, tab2)
+	return vim.tbl_extend("force", tab1 or {}, tab2 or {})
+end
+
 return {
 	{
 		"neovim/nvim-lspconfig",
@@ -43,16 +47,52 @@ return {
 				root_markers = { "gleam.toml", ".git" },
 			})
 
-			vim.lsp.config("rust_analyzer", {
-				on_attach = function(client, bufnr)
-					vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-				end,
-			})
-
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local on_attach = function(_, bufnr)
+				local bufopts = { noremap = true, silent = true, buffer = bufnr }
+				vim.keymap.set(
+					"n",
+					"<leader>jdc",
+					vim.lsp.buf.declaration,
+					extendTable(bufopts, { desc = "Jump to Declaration" })
+				)
+				vim.keymap.set(
+					"n",
+					"<leader>jdf",
+					vim.lsp.buf.definition,
+					extendTable(bufopts, { desc = "Jump to Definition" })
+				)
+				vim.keymap.set(
+					"n",
+					"<leader>ji",
+					vim.lsp.buf.implementation,
+					extendTable(bufopts, { desc = "Jump to Implementation" })
+				)
+				vim.keymap.set(
+					"n",
+					"<leader>jtd",
+					vim.lsp.buf.type_definition,
+					extendTable(bufopts, { desc = "Jump to Type Defs" })
+				)
+				vim.keymap.set(
+					"n",
+					"<leader>jr",
+					vim.lsp.buf.references,
+					extendTable(bufopts, { desc = "Jump to References" })
+				)
+				vim.keymap.set(
+					"n",
+					"<leader>jc",
+					vim.lsp.buf.code_action,
+					extendTable(bufopts, { desc = "Jump to Code Action" })
+				)
+
+				vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+			end
 
 			vim.lsp.config("*", {
 				capabilities = capabilities,
+				on_attach = on_attach,
 			})
 
 			-- enable servers
