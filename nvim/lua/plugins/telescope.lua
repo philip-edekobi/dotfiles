@@ -38,6 +38,12 @@ return {
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find Buffers" })
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "help Tags" })
 			vim.keymap.set("n", "<leader>fz", builtin.current_buffer_fuzzy_find, { desc = "Find in Current File" })
+			vim.keymap.set("n", "<leader>fa", function()
+				builtin.find_files({
+					hidden = true,
+					no_ignore = true,
+				})
+			end, { desc = "Find all" })
 		end,
 	},
 }
