@@ -66,7 +66,9 @@ return {
 					extendTable(bufopts, { desc = "Jump to Code Action" })
 				)
 
-				vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+				vim.keymap.set("n", "<leader>th", function()
+					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }))
+				end, extendTable(bufopts, { desc = "Toggle Inlay Hints" }))
 			end
 
 			-- lsp servers... (remember to add them to the enable() call below
@@ -97,6 +99,14 @@ return {
 				root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
 				capabilities = capabilities,
 				on_attach = on_attach,
+			})
+
+			vim.lsp.config("clangd", {
+				capabilities = extendTable(capabilities, {
+					offsetEncoding = { "utf-16" },
+				}),
+				on_attach = on_attach,
+				root_markers = { ".clang-format", "compile_commands.json", ".git", "compile_flags.txt" },
 			})
 
 			vim.lsp.config("*", {
