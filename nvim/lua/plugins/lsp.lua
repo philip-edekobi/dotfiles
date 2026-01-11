@@ -10,7 +10,7 @@ return {
 			{
 				"mason-org/mason-lspconfig.nvim",
 				opts = {
-					automatic_enable = true,
+					-- automatic_enable = true,
 					ensure_installed = {
 						"lua_ls",
 						"gopls",
@@ -25,29 +25,8 @@ return {
 			},
 		},
 		config = function()
-			-- lsp servers... (remember to add them to the enable() call below
-			vim.lsp.config("lua_ls", {
-				settings = {
-					Lua = {
-						diagnostics = {
-							globals = { "vim" },
-						},
-						workspace = {
-							library = vim.api.nvim_get_runtime_file("", true),
-							checkThirdParty = false,
-						},
-						telemetry = { enable = false },
-					},
-				},
-			})
-
-			vim.lsp.config("gleam", {
-				cmd = { "gleam", "lsp" },
-				filetypes = { "gleam" },
-				root_markers = { "gleam.toml", ".git" },
-			})
-
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 			local on_attach = function(_, bufnr)
 				local bufopts = { noremap = true, silent = true, buffer = bufnr }
 				vim.keymap.set(
@@ -89,6 +68,36 @@ return {
 
 				vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 			end
+
+			-- lsp servers... (remember to add them to the enable() call below
+			vim.lsp.config("lua_ls", {
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+						workspace = {
+							library = vim.api.nvim_get_runtime_file("", true),
+							checkThirdParty = false,
+						},
+						telemetry = { enable = false },
+					},
+				},
+			})
+
+			vim.lsp.config("gleam", {
+				cmd = { "gleam", "lsp" },
+				filetypes = { "gleam" },
+				root_markers = { "gleam.toml", ".git" },
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+
+			vim.lsp.config("ts_ls", {
+				root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
 
 			vim.lsp.config("*", {
 				capabilities = capabilities,
