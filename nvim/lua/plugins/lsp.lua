@@ -95,6 +95,17 @@ return {
 				on_attach = on_attach,
 			})
 
+			vim.lsp.config("jdtls", {
+				on_attach = on_attach,
+				capabilities = capabilities,
+				root_markers = { ".mvn", ".git", "pom.xml", "build.gradle" },
+				settings = {
+					java = {
+						inlayHints = { parameterNames = { enabled = "all" } },
+					},
+				},
+			})
+
 			vim.lsp.config("ts_ls", {
 				root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
 				capabilities = capabilities,
