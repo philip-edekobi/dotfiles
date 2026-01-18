@@ -25,7 +25,7 @@ set $menu fuzzel
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # output * bg #00204f solid_color
 # output * bg /home/luxury/Pictures/Wallpapers/minimal-28.png fill
-output * bg /home/luxury/Pictures/Wallpapers/Arch.png fill
+output * bg /home/luxury/Pictures/Wallpapers/Arch3.png fill
 
 #
 # Example configuration:
