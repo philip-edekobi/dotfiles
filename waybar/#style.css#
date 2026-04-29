@@ -1,6 +1,19 @@
-/*Colorschemes, there are Gruvbox, Tokyo Night, and Everforest by default. The way it works is whichever colorscheme section is defined last will be used. Here everforest is last, but put any one you want to use as the last one.*/
+/*Colorschemes, there are Gruvbox, Tokyo Night, and Everforest by default. The way it works is whichever colorscheme section is defined last will be used. Here everforest is last, but put any one you want to use as the last one. ssdsssssssss*/
 
 
+/* Gruvbox Dark Colors */
+@define-color background #282828;
+@define-color background-light #3c3836;
+@define-color foreground #ebdbb2;
+@define-color black #32302f;
+@define-color red #cc241d;
+@define-color green #98971a;
+@define-color yellow #d79921;
+@define-color blue #458588;
+@define-color magenta #b16286;
+@define-color cyan #689d6a;
+@define-color white #ebdbb2;
+@define-color orange #d65d0e;
 
 /* Tokyo Night */
 @define-color background #1a1b26;
@@ -44,23 +57,6 @@
 @define-color cyan #a3e8e8;
 @define-color white #ffffff;
 @define-color orange #ff8952;
-
-
-
-/* Gruvbox Dark Colors */
-@define-color background #282828;
-@define-color background-light #3c3836;
-@define-color foreground #ebdbb2;
-@define-color black #32302f;
-@define-color red #cc241d;
-@define-color green #98971a;
-@define-color yellow #d79921;
-@define-color blue #458588;
-@define-color magenta #b16286;
-@define-color cyan #689d6a;
-@define-color white #ebdbb2;
-@define-color orange #d65d0e;
-
 
 
 /* Module-specific colors */
