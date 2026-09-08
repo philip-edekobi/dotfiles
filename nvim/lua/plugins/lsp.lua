@@ -144,6 +144,14 @@ return {
 
 				hint_enable = true,
 				hint_prefix = "Arg: ",
+
+				on_attach = function(client, bufnr)
+					if vim.bo[bufnr].filetype == "asm" then
+						return
+					end
+
+					lsp_sig.on_attach(client, bufnr)
+				end,
 			})
 		end,
 	},
