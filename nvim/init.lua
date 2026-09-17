@@ -15,6 +15,10 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.timeoutlen = 300
 
+-- casing settings for search
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 -- syntax hl and file type detect
 vim.cmd("syntax on")
 vim.cmd("filetype plugin indent on")

@@ -120,6 +120,10 @@ return {
 				root_markers = { ".clang-format", "compile_commands.json", ".git", "compile_flags.txt" },
 			})
 
+			vim.lsp.config("asm_lsp", {
+				filetypes = { "!asm" },
+			})
+
 			vim.lsp.config("*", {
 				capabilities = capabilities,
 				on_attach = on_attach,
